@@ -1,0 +1,75 @@
+/* Стили для страницы изучения слов */
+body {
+    max-width: 480px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-bottom: 1rem;
+}
+
+.progress {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+}
+
+input[type=radio] {
+    display: none;
+}
+
+label > span {
+    display: block;
+    background: #f0f0f0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid transparent;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+label.correct > span {
+    background: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+label.wrong > span {
+    background: #f8d7da;
+    border-color: #b02a37;
+    color: #6c757d;
+}
+
+input[type=radio]:checked + span {
+    background: #cce5ff;
+    border-color: #004085;
+    color: #004085;
+}
+
+.result-container {
+    margin-top: 30px;
+    min-height: 56px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.result-container.correct {
+    color: green;
+}
+
+.result-container.wrong {
+    color: red;
+} 

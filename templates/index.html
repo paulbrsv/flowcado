@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Создать пользователя</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <form method="post" action="/">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% if session.get('session_completed') %}
+            <p class="flash" style="color: green;">{{ success_messages.session_completed }}</p>
+            {% set _ = session.pop('session_completed') %}
+        {% endif %}
+        
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required autofocus>
+        <button type="submit">{{ ui_elements.create_button }}</button>
+    </form>
+</body>
+</html>

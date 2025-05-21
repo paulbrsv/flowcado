@@ -1,0 +1,30 @@
+/* Общие стили для всего приложения */
+body {
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    background: #fff;
+}
+
+.flash {
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #a3cdfd;
+    cursor: default;
+} 

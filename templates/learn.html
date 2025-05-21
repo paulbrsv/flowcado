@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Изучение слов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+</head>
+<body>
+    <h2>Выберите перевод слова: <em>{{ word.text|safe }}</em></h2>
+    <p class="progress">{{ ui_elements.word_progress.format(current_word, total_words) }}</p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash" style="color: #e74c3c;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="/learn">
+        {% for opt in options %}
+            <label class="{% if result is not none %}{% if opt == result.correct_translation %}correct{% elif opt == selected_answer and opt != result.correct_translation %}wrong{% endif %}{% endif %}">
+                <input type="radio" name="answer" value="{{ opt }}" required
+                       {% if result is not none %}disabled{% endif %}
+                       {% if selected_answer == opt %}checked{% endif %} />
+                <span>{{ opt }}</span>
+            </label>
+        {% endfor %}
+        <input type="hidden" name="word_id" value="{{ word.id }}" />
+        <button type="submit" {% if result is not none %}disabled{% endif %}>{{ ui_elements.answer_button }}</button>
+    </form>
+    <div class="result-container {% if result is not none %}{{ 'correct' if result.correct else 'wrong' }}{% endif %}">
+        {% if result is not none %}
+            {% if result.correct %}
+                {{ success_messages.correct_answer }}
+            {% else %}
+                {{ result_messages.wrong_answer.format(result.correct_translation) }}
+            {% endif %}
+            <form method="get" action="/learn" style="margin-top: 20px;">
+                <button type="submit">{{ ui_elements.next_button }}</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
