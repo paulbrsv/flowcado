@@ -22,6 +22,7 @@ form {
 
 label {
     display: block;
+    margin-bottom: 15px;
 }
 
 input[type=radio] {
@@ -72,4 +73,37 @@ input[type=radio]:checked + span {
 
 .result-container.wrong {
     color: red;
+}
+
+/* Добавленные стили для JavaScript функциональности */
+#small-loading {
+    margin-left: 10px;
+}
+
+/* Стиль для индикатора загрузки */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-left-color: #3498db;
+    animation: spin 1s ease infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили для адаптивности */
+@media (max-width: 768px) {
+    form {
+        padding: 0 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
 } 

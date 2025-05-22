@@ -13,7 +13,8 @@ ERROR_MESSAGES = {
 # Сообщения успеха
 SUCCESS_MESSAGES = {
     "correct_answer": "Ура, молодец!",
-    "session_completed": "Сессия завершена! Начните новую."
+    "session_completed": "Сессия завершена! Начните новую.",
+    "logout_success": "Вы успешно вышли из системы."
 }
 
 # Сообщения о результатах
