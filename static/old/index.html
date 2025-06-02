@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowcado - Изучение языков</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-container" class="card">
+            <h1>Flowcado</h1>
+            <p>Добро пожаловать в приложение для изучения иностранных слов!</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+        </div>
+
+        <div id="app-container" class="card" style="display: none;">
+            <div class="user-info">
+                <span id="user-display"></span>
+                <button id="logout-btn" class="btn btn-small">Выйти</button>
+            </div>
+
+            <div id="session-start" class="session-container" style="display: none;">
+                <h2>Готовы изучать слова?</h2>
+                <button id="start-session-btn" class="btn btn-primary">Начать сессию</button>
+            </div>
+
+            <div id="learning-session" class="session-container" style="display: none;">
+                <div class="word-counter" id="word-counter">Слово 1 из 10</div>
+
+                <div class="word-card">
+                    <h2 id="current-word" class="word-text"></h2>
+
+                    <div id="options-container" class="options-container">
+                        <!-- Варианты ответов будут добавлены через JavaScript -->
+                    </div>
+
+                    <div id="result-container" class="result-container" style="display: none;">
+                        <p id="result-message" class="result-message"></p>
+                        <button id="next-word-btn" class="btn btn-primary">Следующее слово</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="session-complete" class="session-container" style="display: none;">
+                <h2>Сессия завершена!</h2>
+                <button id="new-session-btn" class="btn btn-primary">Начать новую сессию</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

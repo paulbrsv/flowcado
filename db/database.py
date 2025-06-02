@@ -80,10 +80,10 @@ def get_or_create_user_language(user_id: int, target_language_id: int) -> tuple:
                     WHERE user_id = %s AND target_language_id = %s AND is_active = TRUE
                 """, (user_id, target_language_id))
                 result = cur.fetchone()
-                
+
                 if result:
                     return result['id'], result['level']
-                
+
                 # Создаем новую связь с начальным уровнем A2
                 cur.execute("""
                     INSERT INTO user_languages (user_id, target_language_id, level, is_active, started_at)
@@ -127,24 +127,24 @@ def update_user_progress(user_language_id: int, word_id: int, is_correct: bool, 
                     WHERE user_language_id = %s AND word_id = %s
                 """, (user_language_id, word_id))
                 result = cur.fetchone()
-                
+
                 if result:
                     # Обновляем существующую запись
                     repeats = result['repeats'] + 1
                     successes = result['successes'] + (1 if is_correct else 0)
                     success_rate = successes / repeats
-                    
+
                     cur.execute("""
                         UPDATE user_progress
-                        SET repeats = %s, 
-                            successes = %s, 
-                            success_rate = %s, 
+                        SET repeats = %s,
+                            successes = %s,
+                            success_rate = %s,
                             last_seen = %s,
                             last_answer_wrong = %s,
                             session_id = %s
                         WHERE user_language_id = %s AND word_id = %s
                     """, (
-                        repeats, successes, success_rate, 
+                        repeats, successes, success_rate,
                         datetime.now(), not is_correct, session_id,
                         user_language_id, word_id
                     ))
@@ -153,10 +153,10 @@ def update_user_progress(user_language_id: int, word_id: int, is_correct: bool, 
                     successes = 1 if is_correct else 0
                     repeats = 1
                     success_rate = successes / repeats
-                    
+
                     cur.execute("""
-                        INSERT INTO user_progress 
-                        (user_language_id, word_id, repeats, successes, success_rate, 
+                        INSERT INTO user_progress
+                        (user_language_id, word_id, repeats, successes, success_rate,
                          last_seen, last_answer_wrong, session_id)
                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     """, (
@@ -238,4 +238,4 @@ def get_wrong_translation(correct_word_id: int, difficulty: int, translation_lan
         return []
     finally:
         if conn:
-            close_db_connection(conn) 
+            close_db_connection(conn)

@@ -11,45 +11,55 @@
         <div id="login-container" class="card">
             <h1>Flowcado</h1>
             <p>Добро пожаловать в приложение для изучения иностранных слов!</p>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="username">Имя пользователя:</label>
-                    <input type="text" id="username" name="username" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
-            </form>
+            <div class="form-group">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <button id="login-btn" class="btn btn-primary">Войти</button>
         </div>
 
-        <div id="app-container" class="card" style="display: none;">
-            <div class="user-info">
-                <span id="user-display"></span>
-                <button id="logout-btn" class="btn btn-small">Выйти</button>
+        <div id="app-container" style="display: none;">
+            <!-- Шапка с бургер-меню, приветствием и уровнем -->
+            <div class="card header-info">
+                <div class="burger-menu">
+                    <button id="burger-btn" class="burger-btn">☰</button>
+                    <div id="burger-dropdown" class="burger-dropdown">
+                        <button id="logout-btn" class="btn btn-small">Выйти</button>
+                    </div>
+                </div>
+                <span class="greeting" id="user-display"></span>
+                <span class="level-tag">Level 1</span>
             </div>
-            
-            <div id="session-start" class="session-container" style="display: none;">
+
+            <div id="session-start" class="card session-container" style="display: none;">
                 <h2>Готовы изучать слова?</h2>
                 <button id="start-session-btn" class="btn btn-primary">Начать сессию</button>
             </div>
-            
+
             <div id="learning-session" class="session-container" style="display: none;">
-                <div class="word-counter" id="word-counter">Слово 1 из 10</div>
-                
-                <div class="word-card">
+                <!-- Карточка слова -->
+                <div class="card word-card">
+                    <div class="word-counter" id="word-counter">Слово 1 из 10</div>
                     <h2 id="current-word" class="word-text"></h2>
-                    
-                    <div id="options-container" class="options-container">
-                        <!-- Варианты ответов будут добавлены через JavaScript -->
-                    </div>
-                    
-                    <div id="result-container" class="result-container" style="display: none;">
-                        <p id="result-message" class="result-message"></p>
-                        <button id="next-word-btn" class="btn btn-primary">Следующее слово</button>
-                    </div>
+                    <div class="transcription">[ˈæpəl]</div>
+                    <button class="hint-btn">Подсказка</button>
+                </div>
+
+                <!-- Варианты ответа -->
+                <div id="options-container" class="options-container">
+                    <!-- Варианты будут добавлены через JavaScript -->
+                </div>
+
+                <!-- Результат -->
+                <div id="result-container" class="card1 result-container" style="display: none;">
+                    <p id="result-message" class="result-message"></p>
+                    <button id="next-word-btn" class="btn btn-primary">Следующее слово</button>
                 </div>
             </div>
-            
-            <div id="session-complete" class="session-container" style="display: none;">
+
+            <div id="session-complete" class="card session-container" style="display: none;">
                 <h2>Сессия завершена!</h2>
+                <p class="try-again-text">Попробуй еще раз! 🚀</p>
                 <button id="new-session-btn" class="btn btn-primary">Начать новую сессию</button>
             </div>
         </div>
@@ -57,4 +67,4 @@
 
     <script src="/static/js/app.js"></script>
 </body>
-</html> 
+</html>
